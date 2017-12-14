@@ -1,5 +1,5 @@
 # PubHub
- I did not write the whole project by myself, it was an project I got of a website. The Goal of the project was to build upon an already created project by adding a tagging system to the site. The Github repository is called PubHub and has two branches, the branch titled Original Version is the the version without any code that I wrote and the branch that says Updated Version contains the additions I made.
+ I did not write the whole project by myself, it was an project I got of a website. The Goal of the project was to build upon an already created project by adding a tagging system to the site. The Github repository is called PubHub and has two branches, the branch titled master is the the version without any code that I wrote and the branch that says Updated Version contains the additions I made.
  Changes made:
  Home page:
           (1) Added Tag column to list
