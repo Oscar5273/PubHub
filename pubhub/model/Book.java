@@ -1,6 +1,16 @@
 package examples.pubhub.model;
+/*
+ Changes Made: Added a getTag method to get tags for specific books 
+
+ */
+
+
 
 import java.time.LocalDate;
+import java.util.List;
+
+import examples.pubhub.dao.TagDAO;
+import examples.pubhub.utilities.DAOUtilities;
 
 public class Book {
 
@@ -86,6 +96,17 @@ public class Book {
 
 	public void setContent(byte[] content) {
 		this.content = content;
+	}
+	
+	public String getTag() {
+		TagDAO tagdao = DAOUtilities.getTagDAO();
+		List<Tag> tagList = tagdao.getTagsByBook(this.isbn13);
+		String result="";
+		for (Tag o : tagList)
+			   result+=o.getTag()+",";
+		result=result.substring(0, result.length()-1);
+		return result;
+		
 	}
 	
 	
