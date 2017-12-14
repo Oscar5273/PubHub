@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import examples.pubhub.dao.BookDAO;
+import examples.pubhub.dao.TagDAO;
 import examples.pubhub.model.Book;
+import examples.pubhub.model.Tag;
 import examples.pubhub.utilities.DAOUtilities;
 
 /*
  * This servlet will take you to the homepage for the Book Publishing module (level 100)
+ * 
  */
 @WebServlet("/BookPublishing")
 public class BookPublishingServlet extends HttpServlet {
@@ -26,9 +29,12 @@ public class BookPublishingServlet extends HttpServlet {
 		// Grab the list of Books from the Database
 		BookDAO dao = DAOUtilities.getBookDAO();
 		List<Book> bookList = dao.getAllBooks();
+		TagDAO tagdao = DAOUtilities.getTagDAO();
+		List<Tag> tagList = tagdao.getAllTags();
 
 		// Populate the list into a variable that will be stored in the session
 		request.getSession().setAttribute("books", bookList);
+		request.getSession().setAttribute("tags", tagList);
 		
 		request.getRequestDispatcher("bookPublishingHome.jsp").forward(request, response);
 	}

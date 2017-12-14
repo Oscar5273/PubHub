@@ -1,6 +1,8 @@
 package examples.pubhub.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import examples.pubhub.dao.BookDAO;
+import examples.pubhub.dao.TagDAO;
 import examples.pubhub.model.Book;
+import examples.pubhub.model.Tag;
 import examples.pubhub.utilities.DAOUtilities;
 
 /**
@@ -35,13 +39,17 @@ public class ViewBookDetailsServlet extends HttpServlet {
 		BookDAO dao = DAOUtilities.getBookDAO();
 		Book book = dao.getBookByISBN(isbn13);
 		
+		TagDAO tagdao = DAOUtilities.getTagDAO();
+		List<Tag> tagList = tagdao.getTagsByBook(isbn13);
+		
 		request.setAttribute("book", book);
+		request.setAttribute("tags", tagList);
 		
 		// We can use a forward here, because if a user wants to refresh their browser on this page,
 		// it will just show them the most recent details for their book. There's no risk of data
 		// miss-handling here.
 		request.getRequestDispatcher("bookDetails.jsp").forward(request, response);
-		
+	
 	}
 
 }
