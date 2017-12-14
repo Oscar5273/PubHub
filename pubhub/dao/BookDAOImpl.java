@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import examples.pubhub.model.Book;
+import examples.pubhub.model.Tag;
 import examples.pubhub.utilities.DAOUtilities;
 
 /**
@@ -19,7 +20,7 @@ public class BookDAOImpl implements BookDAO {
 
 	Connection connection = null;	// Our connection to the database
 	PreparedStatement stmt = null;	// We use prepared statements to help protect against SQL injection
-	
+	PreparedStatement stmt2 = null;
 	/*------------------------------------------------------------------------------------------------*/
 	
 	
@@ -281,8 +282,10 @@ public class BookDAOImpl implements BookDAO {
 			stmt.setString(2, book.getAuthor());
 			stmt.setDouble(3, book.getPrice());
 			stmt.setString(4, book.getIsbn13());
+			stmt2=connection.prepareStatement("test1");
 			
 			System.out.println(stmt);
+			System.out.println("Test1");
 			
 			if (stmt.executeUpdate() != 0)
 				return true;
@@ -323,6 +326,7 @@ public class BookDAOImpl implements BookDAO {
 			closeResources();
 		}
 	}
+	
 
 	
 	/*------------------------------------------------------------------------------------------------*/
